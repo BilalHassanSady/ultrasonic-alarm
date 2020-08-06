@@ -1,0 +1,29 @@
+int echo = 10;
+int trig = 11;
+int pizo = 8;
+void setup(){
+  pinMode(echo,INPUT);
+  pinMode(trig,OUTPUT);
+  pinMode(pizo,OUTPUT);
+}
+void loop(){
+  int x = distance();
+  if(x<30){
+    tone(pizo,250);
+  }
+  else
+  {
+    noTone(pizo);
+  }
+}
+
+int distance(){
+  digitalWrite(trig,LOW);
+  digitalWrite(trig,HIGH);
+  delayMicroseconds(2);
+  digitalWrite(trig,LOW);
+  delayMicroseconds(10);
+  int x = pulseIn(echo ,HIGH);
+  x= x*0.034/2;
+  return x;
+}
